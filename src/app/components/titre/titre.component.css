@@ -1,0 +1,11 @@
+img{
+    height: 100px;
+    width: 120px;
+    
+}
+h1 span {
+color: aqua;
+}
+h1{
+    text-shadow: 2px 2px gray;
+}
