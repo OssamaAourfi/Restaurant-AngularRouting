@@ -1,21 +1,57 @@
 <div class="container w-25 mt-3">
-<form>
+  <form #f=ngForm>
     <h1 class="text-center mb-4">Register</h1>
     <div class="form-group">
-        <label for="exampleInputName">Name :</label>
-        <input required  ngModel name="name" #name="ngModel" (change)="log(name)" type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" />  
-     </div>
-     <div *ngIf="name.touched&&name.invalid" class="alert alert-danger">this field is empty</div>
+      <label for="exampleInputName">Name :</label>
+      <input
+        required
+        ngModel
+        minlength="3"
+        maxlength="12"
+        pattern ="[a-zA-z]+"
+        name="name"
+        #name="ngModel"
+        (change)="log(name)"
+        type="text"
+        class="form-control"
+        id="exampleInputName"
+        placeholder="Enter Name"
+      />
+    </div>
+    <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+      <div *ngIf="name.errors?.['required']">
+        this field is empty
+      </div>
+      <div *ngIf="name.errors?.['minlength']">
+        you must write at least 3 chars
+      </div >
+      <div *ngIf="name.errors?.['pattern']">
+         you must write just the chars
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+      <input type="password" minlength="6" name="password"    class="form-control" id="exampleInputPassword1" />
     </div>
-    
-   <a routerLink="/relogin"> <button type="submit" class="btn btn-block text-light">Register</button></a>
+   
+
+    <a routerLink="/relogin">
+      <button [disabled]="f.invalid" type="submit" class="btn btn-block text-light">
+        Register
+      </button></a
+    >
   </form>
 </div>
