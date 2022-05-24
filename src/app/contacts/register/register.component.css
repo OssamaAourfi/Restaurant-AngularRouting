@@ -14,3 +14,6 @@ a{
 .form-control.ng-touched.ng-invalid{
     border: 1px solid red;
 }
+h1 span {
+    color: rgb(199, 33, 33);
+    }
