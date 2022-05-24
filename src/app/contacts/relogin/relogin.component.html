@@ -1,5 +1,5 @@
 <div class="container w-25 mt-3">
-  <form [formGroup]="login">
+  <form #f="ngForm" [formGroup]="login">
     <h1 class="text-center mb-4">Login</h1>
 
     <div class="form-group">
@@ -33,6 +33,6 @@
       </div>
     </div>
     <a routerLink="/register">j'ai oublie mot de passe</a>
-    <button type="submit" class="btn btn-block text-light">Login</button>
+    <button   [disabled]="f.invalid" type="submit" class="btn btn-block text-light mt-3">Login</button>
   </form>
 </div>
