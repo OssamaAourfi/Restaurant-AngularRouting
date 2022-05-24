@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup ,FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-relogin',
@@ -11,5 +13,19 @@ export class ReloginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  login = new FormGroup({
+    name: new FormControl('',
+    [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.pattern('[a-zA-Z]+')
+    ]),
+    password :new FormControl('',
+    [
+      Validators.required,
+      Validators.minLength(6)
+    ]),
+  })
 
 }

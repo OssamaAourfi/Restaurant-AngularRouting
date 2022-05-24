@@ -1,17 +1,38 @@
 <div class="container w-25 mt-3">
-    <form>
-        <h1 class="text-center mb-4">Login</h1>
-       
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <a routerLink="/regitser">j'ai oublie mot de passe</a>
-      <button type="submit" class="btn btn-block text-light">Login</button>
-      </form>
+  <form [formGroup]="login">
+    <h1 class="text-center mb-4">Login</h1>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input
+        formControlName="name"
+        type="name"
+        name="name"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <div class="alert alert-danger" *ngIf="login.get('name')?.touched && login.get('name')?.invalid">
+        <div *ngIf="login.get('name')?.errors?.['required']">ce champ est obligatoire</div>
+        <div *ngIf="login.get('name')?.errors?.['minlength']">au moins 4 chars</div>
+        <div *ngIf="login.get('name')?.errors?.['pattern']">il faut ecrire sauf les chiffres</div>
+      </div>
     </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+      <div class="alert alert-danger" *ngIf="login.get('password')?.touched && login.get('password')?.invalid" >
+        <div *ngIf="login.get('password')?.errors?.['required']">Ce champ est obligatoire</div>
+        <div *ngIf="login.get('password')?.errors?.['minlength']">au mois 6 chars</div>
+      </div>
+    </div>
+    <a routerLink="/register">j'ai oublie mot de passe</a>
+    <button type="submit" class="btn btn-block text-light">Login</button>
+  </form>
+</div>
